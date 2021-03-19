@@ -4,16 +4,33 @@
     <title>test</title>
     <style type="text/css">
         {{style}};
-       </style> 
-</head> 
+       </style>
+    <script src="https://maps.api.2gis.ru/2.0/loader.js"></script>
+</head>
 <body>
-    <script src="https://mapgl.2gis.com/api/js/v1"></script>
-    <div id="container"></div>
+    <div id="map" style="width: 100%; height: 900px;"></div>
     <script>
-        const map = new mapgl.Map('container', {
-            center: [129.133752, 61.492552],
-            zoom: 13,
-            key: '4063dfb1-1a15-4509-a767-c396afc8ae3b',
+        function httpGet(theUrl)
+{
+    var xmlHttp = new XMLHttpRequest();
+    xmlHttp.open( "GET", theUrl, false ); // false for synchronous request
+    xmlHttp.send( null );
+    return xmlHttp.responseText;
+}
+        DG.then(function() {
+            var map = DG.map('map', {
+                center: [61.492552, 129.133752],
+                zoom: 15
+            });
+
+            var data = httpGet('/path/9');
+
+            DG.geoJson(data, {
+                onEachFeature: function (feature, layer) {
+                    layer.bindPopup(feature.properties.info);
+                }
+            }).addTo(map);
         });
     </script>
 </body>
+</html>
