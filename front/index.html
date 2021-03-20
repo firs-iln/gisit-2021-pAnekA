@@ -22,9 +22,16 @@
                 center: [61.492552, 129.133752],
                 zoom: 15
             });
-
-            var data = httpGet('/path/9');
-
+<!--        function Data(d) {-->
+<!--            this.d = JSON.parse(d);-->
+<!--        }-->
+<!--            Data.prototype.toString = function dataToString() {-->
+<!--                var res = this.d;-->
+<!--                return res;-->
+<!--            }-->
+<!--            data = new Data(httpGet('/path/9'));-->
+<!--            alert(typeof(data));-->
+            data = JSON.parse(httpGet('/path/9'));
             DG.geoJson(data, {
                 onEachFeature: function (feature, layer) {
                     layer.bindPopup(feature.properties.info);

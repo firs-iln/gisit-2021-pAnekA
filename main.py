@@ -9,7 +9,7 @@ app = Flask(__name__)
 
 
 def convert_elem(elem: list):
-    elem = list(reversed(convert(elem[0], elem[1])))
+    elem = list(convert(elem[0], elem[1]))
     return elem
 
 
