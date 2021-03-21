@@ -33,10 +33,10 @@
 <!--            alert(typeof(data));-->
             data = JSON.parse(httpGet('/path/9'));
             DG.geoJson(data, {
-                onEachFeature: function (feature, layer) {
-                    layer.bindPopup(feature.properties.info);
-                }
-            }).addTo(map);
+            style: function feature() {
+                return {color: "#FF0000"};
+                 }
+                }).addTo(map);
         });
     </script>
 </body>
